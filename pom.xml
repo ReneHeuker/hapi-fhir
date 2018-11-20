@@ -24,24 +24,27 @@
 	</issueManagement>
 
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>repos.cloud.gino.nl</id>
+			<name>Gino Release Repos</name>
+			<url>https://repos.cloud.gino.nl/artifactory/libs-release-local/</url>
 		</repository>
+		<snapshotRepository>
+			<id>repos.cloud.gino.nl</id>
+			<name>Gino Snapshot Repos</name>
+			<url>https://repos.cloud.gino.nl/artifactory/libs-snapshot-local/</url>
+		</snapshotRepository>
 		<site>
 			<id>git.server</id>
-			<url>scm:git:git@github.com:jamesagnew/hapi-fhir.git</url>
+			<url>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:jamesagnew/hapi-fhir.git</connection>
-		<url>scm:git:git@github.com:jamesagnew/hapi-fhir.git</url>
-		<developerConnection>scm:git:git@github.com:jamesagnew/hapi-fhir.git</developerConnection>
+		<connection>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</connection>
+		<url>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</url>
+		<developerConnection>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</developerConnection>
+		<tag>hapi-fhir-3.6.0-GINO-1.0</tag>
 	</scm>
 
 	<repositories>
@@ -71,7 +74,7 @@
 
 	<dependencies>
 		<!-- Cobertura is here as a 'provided' depdendency just to get the @CoverageIgnore annotation. It would be nice if there was a better way for this.. -->
-		<!-- <dependency> <groupId>net.sourceforge.cobertura</groupId> <artifactId>cobertura</artifactId> <version>2.1.1</version> <scope>provided</scope> <exclusions> <exclusion> <artifactId>jetty</artifactId> 
+		<!-- <dependency> <groupId>net.sourceforge.cobertura</groupId> <artifactId>cobertura</artifactId> <version>2.1.1</version> <scope>provided</scope> <exclusions> <exclusion> <artifactId>jetty</artifactId>
 			<groupId>org.mortbay.jetty</groupId> </exclusion> </exclusions> </dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -1281,6 +1284,13 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<!-- Release parameters -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+				</plugin>
+
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
@@ -1505,7 +1515,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<!-- Be careful upgrading the version of this plugin- 3.5 breaks the relow-maven-skin that we use currently. Also once we move to 3.5 the site.xml <head> tag needs to have its contents put in a CDATA 
+					<!-- Be careful upgrading the version of this plugin- 3.5 breaks the relow-maven-skin that we use currently. Also once we move to 3.5 the site.xml <head> tag needs to have its contents put in a CDATA
 						block. What an unpleasant misadventure to figure that all out...... -->
 					<version>3.4</version>
 					<configuration>
@@ -1595,7 +1605,7 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
-								<!-- 
+								<!--
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>
