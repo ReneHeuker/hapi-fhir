@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>ca.uhn.hapi.fhir</groupId>
 		<artifactId>hapi-fhir</artifactId>
-		<version>3.6.0-GINO-1.0-SNAPSHOT</version>
+		<version>3.6.0-GINO-1.0</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -267,11 +267,9 @@
 							<target>
 								<taskdef name="hapi-tinder" classname="ca.uhn.fhir.tinder.ant.TinderGeneratorTask" classpathref="maven.plugin.classpath" />
 
-								<hapi-tinder templateFile="${project.basedir}/src/test/resources/templates/resource_test.vm" generateResources="true" targetSourceDirectory="${project.build.directory}/generated-sources/tinder"
-									targetPackage="ca.uhn.test.ant.multi" filenameSuffix="ResourceTest.java" projectHome="${project.basedir}/.." version="dstu2" includeResources="patient,organization" />
+								<hapi-tinder templateFile="${project.basedir}/src/test/resources/templates/resource_test.vm" generateResources="true" targetSourceDirectory="${project.build.directory}/generated-sources/tinder" targetPackage="ca.uhn.test.ant.multi" filenameSuffix="ResourceTest.java" projectHome="${project.basedir}/.." version="dstu2" includeResources="patient,organization" />
 
-								<hapi-tinder templateFile="${project.basedir}/src/test/resources/templates/resource_test_beans_java.vm" generateResources="true" targetSourceDirectory="${project.build.directory}/generated-sources/tinder"
-									targetFile="TestConfigDstu2.java" targetPackage="ca.uhn.test.ant.single" packageBase="ca.uhn.test.ant.multi" projectHome="${project.basedir}/.." version="dstu2" includeResources="patient,organization" />
+								<hapi-tinder templateFile="${project.basedir}/src/test/resources/templates/resource_test_beans_java.vm" generateResources="true" targetSourceDirectory="${project.build.directory}/generated-sources/tinder" targetFile="TestConfigDstu2.java" targetPackage="ca.uhn.test.ant.single" packageBase="ca.uhn.test.ant.multi" projectHome="${project.basedir}/.." version="dstu2" includeResources="patient,organization" />
 
 							</target>
 						</configuration>
@@ -372,7 +370,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -385,7 +383,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -398,7 +396,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>

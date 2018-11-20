@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-			xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.uhn.hapi.fhir</groupId>
 	<artifactId>hapi-fhir</artifactId>
 	<packaging>pom</packaging>
-	<version>3.6.0-GINO-1.0-SNAPSHOT</version>
+	<version>3.6.0-GINO-1.0</version>
 	<name>HAPI-FHIR</name>
 	<description>An open-source implementation of the FHIR specification in Java.</description>
 	<url>https://hapifhir.io</url>
@@ -24,25 +23,28 @@
 	</issueManagement>
 
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>repos.cloud.gino.nl</id>
+			<name>Gino Release Repos</name>
+			<url>https://repos.cloud.gino.nl/artifactory/libs-release-local/</url>
 		</repository>
+		<snapshotRepository>
+			<id>repos.cloud.gino.nl</id>
+			<name>Gino Snapshot Repos</name>
+			<url>https://repos.cloud.gino.nl/artifactory/libs-snapshot-local/</url>
+		</snapshotRepository>
 		<site>
 			<id>git.server</id>
-			<url>scm:git:git@github.com:jamesagnew/hapi-fhir.git</url>
+			<url>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</url>
 		</site>
 	</distributionManagement>
 
 	<scm>
-		<connection>scm:git:git@github.com:jamesagnew/hapi-fhir.git</connection>
-		<url>scm:git:git@github.com:jamesagnew/hapi-fhir.git</url>
-		<developerConnection>scm:git:git@github.com:jamesagnew/hapi-fhir.git</developerConnection>
-	</scm>
+		<connection>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</connection>
+      <url>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</url>
+		<developerConnection>scm:git:git@github.com:ReneHeuker/hapi-fhir.git</developerConnection>
+	  <tag>hapi-fhir-3.6.0-GINO-1.0</tag>
+  </scm>
 
 	<repositories>
 		<repository>
@@ -1281,6 +1283,20 @@
 	<build>
 		<pluginManagement>
 			<plugins>
+				<!-- Release parameters -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<!--<releaseProfiles>release</releaseProfiles>-->
+						<!--<goals>deploy</goals>-->
+						<checkModificationExcludes>
+							<checkModificationExclude>**/*</checkModificationExclude>
+						</checkModificationExcludes>
+					</configuration>
+				</plugin>
+
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
@@ -1573,7 +1589,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<pluginExecution>
@@ -1592,7 +1608,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 								<!-- 
@@ -1719,74 +1735,74 @@
 						<configuration>
 							<target>
 								<copy todir="target/site/apidocs">
-									<fileset dir="hapi-fhir-base/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-base/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-dstu2">
-									<fileset dir="hapi-fhir-structures-dstu2/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-structures-dstu2/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-dstu3">
-									<fileset dir="hapi-fhir-structures-dstu3/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-structures-dstu3/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-r4">
-									<fileset dir="hapi-fhir-structures-r4/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-structures-r4/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-jpaserver">
-									<fileset dir="hapi-fhir-jpaserver-base/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-jpaserver-base/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-client">
-									<fileset dir="hapi-fhir-client/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-client/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/apidocs-server">
-									<fileset dir="hapi-fhir-server/target/site/apidocs"/>
+									<fileset dir="hapi-fhir-server/target/site/apidocs" />
 								</copy>
 								<copy todir="target/site/xref-jpaserver">
-									<fileset dir="hapi-fhir-jpaserver-base/target/site/xref"/>
+									<fileset dir="hapi-fhir-jpaserver-base/target/site/xref" />
 								</copy>
 								<copy todir="target/site/xref-base">
-									<fileset dir="hapi-fhir-base/target/site/xref"/>
+									<fileset dir="hapi-fhir-base/target/site/xref" />
 								</copy>
 								<!-- <copy todir="target/site/cobertura"> <fileset dir="hapi-fhir-cobertura/target/site/cobertura" /> </copy> -->
 								<copy todir="target/site">
-									<fileset dir="hapi-fhir-base/target/site" includes="checkstyle.*"/>
+									<fileset dir="hapi-fhir-base/target/site" includes="checkstyle.*" />
 								</copy>
 								<echo>Fixing Checkstyle Report</echo>
 								<replace dir="target/site" summary="true">
-									<include name="checkstyle.html"/>
+									<include name="checkstyle.html" />
 									<replacetoken>"../../</replacetoken>
 									<replacevalue>"./</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>
 										http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css
 									</replacetoken>
 									<replacevalue>./css/bootstrap-responsive.min.css</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>http://netdna.bootstrapcd</replacetoken>
 									<replacevalue>https://netdna.bootstrapcd</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css
 									</replacetoken>
 									<replacevalue>https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css
 									</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>http://ajax.googleapis</replacetoken>
 									<replacevalue>https://ajax.googleapis</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>\t</replacetoken>
 									<replacevalue>
 									</replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="index.html"/>
+									<include name="index.html" />
 									<replacetoken><![CDATA[<h2 id="Welcome">Welcome</h2>]]></replacetoken>
 									<replacevalue><![CDATA[<div class="jumbotron subhead">
 		<div class="row" id="banner">
@@ -1801,7 +1817,7 @@
 		</div>
 	</div>]]></replacevalue>
 								</replace>
-								<!--<replaceregexp file="target/site/checkstyle.html" byline="false" match="&lt;ul class=&quot;breadcrumb.*?&lt;/ul&gt;" replace="" flags="s"/> -->
+								<!--<replaceregexp file="target/site/checkstyle.html" byline="false" match="&lt;ul class=&quot;breadcrumb.*?&lt;/ul&gt;" replace="" flags="s" /> -->
 							</target>
 						</configuration>
 					</execution>
@@ -1815,54 +1831,53 @@
 							<target>
 								<echo>Adding Fontawesome</echo>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>
 										<![CDATA[<a href="download.html" title="Download">Download</a>]]></replacetoken>
 									<replacevalue>
-										<![CDATA[<a href="download.html"  title="Download"><i class="fa fa-download"></i> Download</a>]]></replacevalue>
+										<![CDATA[<a href="download.html" title="Download"><i class="fa fa-download"></i> Download</a>]]></replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken>
 										<![CDATA[<a href="https://github.com/jamesagnew/hapi-fhir/" title="GitHub Project" class="externalLink">GitHub Project</a>]]></replacetoken>
 									<replacevalue>
-										<![CDATA[<a href="https://github.com/jamesagnew/hapi-fhir/" title="GitHub Project"  class="externalLink"><i class="fa fa-github"></i> GitHub Project</a>]]></replacevalue>
+										<![CDATA[<a href="https://github.com/jamesagnew/hapi-fhir/" title="GitHub Project" class="externalLink"><i class="fa fa-github"></i> GitHub Project</a>]]></replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken><![CDATA[data-toggle="dropdown">Test Servers <]]></replacetoken>
 									<replacevalue>
 										<![CDATA[data-toggle="dropdown"><i class="fa fa-fire"></i>&nbsp;Test Servers&nbsp;<]]></replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken><![CDATA[data-toggle="dropdown">Documentation <]]></replacetoken>
 									<replacevalue>
 										<![CDATA[data-toggle="dropdown"><i class="fa fa-book"></i>&nbsp;Documentation&nbsp;<]]></replacevalue>
 								</replace>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"/>
+									<include name="*.html" />
 									<replacetoken><![CDATA[data-toggle="dropdown">Get Help <]]></replacetoken>
 									<replacevalue>
 										<![CDATA[data-toggle="dropdown"><i class="fa fa-support"></i>&nbsp;Get Help&nbsp;<]]></replacevalue>
 								</replace>
 								<echo>Changing Breadcrumbs</echo>
 								<replace dir="target/site" summary="true">
-									<include name="doc_*.html"/>
+									<include name="doc_*.html" />
 									<replacetoken><![CDATA[<li class="divider">/</li>]]></replacetoken>
-									<replacevalue><![CDATA[<li  class="divider">/</li>
+									<replacevalue><![CDATA[<li class="divider">/</li>
 			<li><a href="docindex.html" title="Documentation">Documentation</a></li>
-			<li  class="divider">/</li>]]></replacevalue>
+			<li class="divider">/</li>]]></replacevalue>
 								</replace>
 								<echo>Adding Syntax Highlighter</echo>
 								<replace dir="target/site" summary="true">
-									<include name="*.html"></include>
+									<include name="*.html" />
 									<replacetoken><![CDATA[</body>]]></replacetoken>
 									<replacevalue><![CDATA[
 <script type="text/javascript">
 	var elements = document.getElementsByClassName("source");
-	for (var i=0; i < elements.length; i++) {
-		var pres = elements[i].getElementsByTagName("pre");
+	for (var i=0; i < elements.length; i++) { var pres = elements[i].getElementsByTagName("pre");
 		for (var j = 0; j < pres.length; j++) {
 			var pre = pres[j];
 			if (pre.innerHTML.match(/^\s*\&lt\;/)) {
@@ -1898,9 +1913,9 @@
 							<target>
 								<echo>Adding Google analytics in target/site for &lt;body&gt;</echo>
 								<replace dir="target/site" summary="true">
-									<include name="**/*.html"></include>
-									<replacefilter token="#build#" value="${label}"/>
-									<replacefilter token="#version#" value="${project.version}"/>
+									<include name="**/*.html" />
+									<replacefilter token="#build#" value="${label}" />
+									<replacefilter token="#version#" value="${project.version}" />
 									<replacetoken><![CDATA[</body>]]></replacetoken>
 									<replacevalue><![CDATA[
 <script>
@@ -1920,7 +1935,7 @@
 								</replace>
 								<echo>Adding Google analytics in target/site for &lt;BODY&gt;</echo>
 								<replace dir="target/site" summary="true">
-									<include name="**/*.html"></include>
+									<include name="**/*.html" />
 									<replacetoken><![CDATA[</BODY>]]></replacetoken>
 									<replacevalue><![CDATA[
 <script>
@@ -2091,6 +2106,7 @@
 	</reporting>
 
 	<profiles>
+
 		<profile>
 			<id>DIST</id>
 			<modules>
