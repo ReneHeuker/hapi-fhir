@@ -1064,8 +1064,9 @@ class ParserState<T> {
 					List<IBaseReference> refs = myContext.newTerser().getAllPopulatedChildElementsOfType(next, IBaseReference.class);
 					for (IBaseReference nextRef : refs) {
 						if (nextRef.isEmpty() == false && nextRef.getReferenceElement() != null) {
-							IIdType unqualifiedVersionless = nextRef.getReferenceElement().toUnqualifiedVersionless();
-							IBaseResource target = idToResource.get(unqualifiedVersionless.getValueAsString());
+//							IIdType unqualifiedVersionless = nextRef.getReferenceElement().toUnqualifiedVersionless();
+//							IBaseResource target = idToResource.get(unqualifiedVersionless.getValueAsString());
+							IBaseResource target = idToResource.get(nextRef.getReferenceElement().getValueAsString());
 							if (target != null) {
 								nextRef.setResource(target);
 							}
